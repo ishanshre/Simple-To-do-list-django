@@ -6,6 +6,7 @@
     <p>Description: {{ tasks.description }}</p>
     <p>Status: {{ tasks.complete }}</p>
     <p>Date Created: {{ tasks.create }}</p>
+    <p>Author: {{ tasks.user|title }}</p>
     <button><a href="{% url 'todoapp:taskupdate' tasks.pk %}">Update</a></button>
     <button><a href="{% url 'todoapp:taskdelete' tasks.pk %}">Delete</a></button>
 {% endblock body %}
