@@ -11,6 +11,13 @@ class TaskList(LoginRequiredMixin,ListView):
     context_object_name = 'tasks'
     template_name = 'todoapp/tasklist.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)#display item related to logged in user only
+        context['count'] = context['tasks'].filter(complete=False).count()
+        return context
+
+
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     context_object_name = 'tasks'
@@ -18,9 +25,13 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 class TaskCreateView(LoginRequiredMixin,CreateView):
     model = Task
-    fields = '__all__'
+    fields = ['title','description','complete']
     context_object_name = 'tasks'
     template_name = 'todoapp/task_create.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreateView, self).form_valid(form)
 
 class TaskUpdateView(LoginRequiredMixin,UpdateView):
     model = Task
