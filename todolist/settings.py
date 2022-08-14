@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-57)v#=q9v9&4f_$m7%tj7nj+2uao*elt-ow^a*_%%q%av*)jcx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com','localhost','127.0.0.1']
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+    'crispy_forms',
     'todoapp.apps.TodoappConfig',
     'authentication.apps.AuthenticationConfig',
 ]
@@ -132,3 +133,4 @@ AUTH_USER_MODEL = 'authentication.User'
 LOGIN_REDIRECT_URL = 'todoapp:tasklist'
 LOGOUT_REDIRECT_URL = 'authentication:login'
 LOGIN_URL = 'authentication:login'
+CRISPY_TEMPLATE_PACK='uni_form'
