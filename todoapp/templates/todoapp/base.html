@@ -8,6 +8,10 @@
 </head>
 <body>
     {% include 'todoapp/messages.html' %}
+    <form action="" method="get">
+        <input type="text" name="search-area" value="{{ search_input }}">
+        <input type="submit" value="Search">
+    </form>
     {% block body %}
     {% endblock body %}
 </body>
