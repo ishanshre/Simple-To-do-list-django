@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+</head>
+<body>
+    <h1>Task List </h1>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th></th>
+        </tr>
+        <tr>
+            {% for task in tasks %}
+            <td>{{ task.title|title }}</td>
+            <td><a href="{% url 'todoapp:taskdetail' task.id %}">View</a></td>
+        </tr>
+            {% empty %}
+            <h1>No items on the list</h1>
+            {% endfor %}
+    </table>
+    <button><a href="{% url 'todoapp:taskcreate' %}">Task Create</a></button>
+
+</body>
+</html>
